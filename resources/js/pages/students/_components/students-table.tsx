@@ -28,6 +28,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import TableTooltipAction from "@/components/table-tooltip-action";
+import { format } from 'date-fns';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -55,7 +56,12 @@ export const columns: ColumnDef<Students>[] = [
     },
     {
         accessorKey: "created_at",
-        header: "Created At"
+        header: "Created At",
+        cell: ({ row }) => {
+            const createdAt = new Date(row.original.created_at);
+            return format(createdAt, 'EEEE, dd MMMM yyyy')
+
+        }
     },
     {
         id: 'actions',
