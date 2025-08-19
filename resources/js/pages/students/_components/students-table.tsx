@@ -60,14 +60,13 @@ export const columns: ColumnDef<Students>[] = [
         cell: ({ row }) => {
             const createdAt = new Date(row.original.created_at);
             return format(createdAt, 'EEEE, dd MMMM yyyy')
-
         }
     },
     {
         id: 'actions',
         header: 'Aksi',
         cell: ({ row }) => {
-            const academicYear = row.original;
+            const student = row.original;
 
             return (
                 <div className="flex gap-2">
@@ -75,7 +74,7 @@ export const columns: ColumnDef<Students>[] = [
                         <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => router.get(route('protected.academic-years.show', { academicYear: academicYear.id }))}
+                            onClick={() => router.get(route('protected.academic-years.show', { student: student.id }))}
                         >
                             <Eye className="h-4 w-4" />
                         </Button>
@@ -84,7 +83,7 @@ export const columns: ColumnDef<Students>[] = [
                         <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => router.get(route('protected.academic-years.edit', { academicYear: academicYear.id }))}
+                            onClick={() => router.get(route('protected.academic-years.edit', { student: student.id }))}
                         >
                             <Settings2 className="h-4 w-4" />
                         </Button>
@@ -110,7 +109,7 @@ export const columns: ColumnDef<Students>[] = [
                                 <AlertDialogAction
                                     className="bg-destructive text-white hover:bg-destructive/80 hover:text-white"
                                     onClick={() => {
-                                        router.delete(route('protected.academic-years.destroy', { academicYear: academicYear.id }));
+                                        router.delete(route('protected.academic-years.destroy', { student: student.id }));
                                     }}
                                 >
                                     Lanjutkan
