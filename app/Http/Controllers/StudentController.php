@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
 use Inertia\Inertia;
 use App\Models\Classes;
 use App\Models\Student;
@@ -28,5 +29,12 @@ class StudentController extends Controller
         return Inertia::render('students/create', [
             'classes' => $classes
         ]);
+    }
+
+    public function store(StoreStudentRequest $request)
+    {
+        Student::create($request->validate());
+
+        return redirect('students.index')->with('success', 'Student has been added.');
     }
 }
