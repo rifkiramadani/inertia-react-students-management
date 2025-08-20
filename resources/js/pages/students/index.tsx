@@ -23,10 +23,12 @@ export default function index({ students }: StudentsPaginated) {
             <Head title="Students" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
                 <Link href={route('students.index')}>
-                    <Button>
-                        <Plus />
-                        Tambah
-                    </Button>
+                    <Link href={route('students.create')}>
+                        <Button>
+                            <Plus />
+                            Tambah
+                        </Button>
+                    </Link>
                 </Link>
                 <StudentsTable data={students.data} columns={columns} />
                 <DynamicPagination meta={students.meta} />
