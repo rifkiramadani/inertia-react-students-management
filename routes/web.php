@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
@@ -17,6 +18,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [StudentController::class, 'index'])->name('index');
         Route::get('/create', [StudentController::class, 'create'])->name('create');
         Route::post('/', [StudentController::class, 'store'])->name('store');
+    });
+    Route::prefix('sections')->name('sections.')->group(function () {
+        Route::get('/', [SectionController::class, 'index'])->name('index');
     });
 });
 
