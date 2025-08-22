@@ -12,6 +12,7 @@ import { SectionsProps } from "@/types/models/sections"
 import { useForm } from "@inertiajs/react"
 import { FormEvent, useEffect, useState } from "react"
 import axios from "axios"
+import InputError from "@/components/input-error"
 
 
 
@@ -48,16 +49,32 @@ export function StudentsForm({ classes }: ClassesProps) {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name">Name</label>
-                    <Input type="text" id="name" name="name" value={data.name} placeholder="Name" onChange={e => setData('name', e.target.value)} />
+                    <Input type="text"
+                        id="name"
+                        className={errors.name ? 'border-red-400' : ''}
+                        name="name"
+                        value={data.name}
+                        placeholder="Name"
+                        onChange={e => setData('name', e.target.value)} />
+                    <InputError message={errors.name} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email">Email</label>
-                    <Input type="text" id="email" name="email" value={data.email} placeholder="Email" onChange={e => setData('email', e.target.value)} />
+                    <Input type="text"
+                        id="email"
+                        className={errors.email ? 'border-red-400' : ''}
+                        name="email"
+                        value={data.email}
+                        placeholder="Email"
+                        onChange={e => setData('email', e.target.value)} />
+                    <InputError message={errors.email} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="class">Class</label>
-                    <Select name="class" onValueChange={(value) => setData('class_id', value)} value={data.class_id}>
-                        <SelectTrigger className="w-[180px]">
+                    <Select name="class"
+                        onValueChange={(value) => setData('class_id', value)}
+                        value={data.class_id}>
+                        <SelectTrigger className={`w-[180px] ${errors.class_id ? 'border-red-400' : ''}`}>
                             <SelectValue placeholder="Class" />
                         </SelectTrigger>
                         <SelectContent>
@@ -68,11 +85,12 @@ export function StudentsForm({ classes }: ClassesProps) {
                             ))}
                         </SelectContent>
                     </Select>
+                    <InputError message={errors.class_id} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="section">Section</label>
                     <Select name="section" onValueChange={(value) => setData('section_id', value)} value={data.section_id}>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className={`w-[180px] ${errors.section_id ? 'border-red-400' : ''}`}>
                             <SelectValue placeholder="Section" />
                         </SelectTrigger>
                         <SelectContent>
@@ -83,6 +101,7 @@ export function StudentsForm({ classes }: ClassesProps) {
                             ))}
                         </SelectContent>
                     </Select>
+                    <InputError message={errors.section_id} />
                 </div>
                 <Button type="submit" disabled={processing}>Tambah</Button>
             </form>
