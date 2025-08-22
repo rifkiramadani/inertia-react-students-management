@@ -26,8 +26,8 @@ class StoreStudentRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'class_id' => 'required|exist:classes,id',
-            'section_id' => 'required|exist:sections,id'
+            'class_id' => 'required|exists:classes,id',
+            'section_id' => 'required|exists:sections,id'
         ];
     }
 }

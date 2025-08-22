@@ -71,7 +71,7 @@ export function StudentsForm({ classes }: ClassesProps) {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="class">Class</label>
-                    <Select name="class"
+                    <Select name="class_id"
                         onValueChange={(value) => setData('class_id', value)}
                         value={data.class_id}>
                         <SelectTrigger className={`w-[180px] ${errors.class_id ? 'border-red-400' : ''}`}>
@@ -89,13 +89,13 @@ export function StudentsForm({ classes }: ClassesProps) {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="section">Section</label>
-                    <Select name="section" onValueChange={(value) => setData('section_id', value)} value={data.section_id}>
+                    <Select name="section_id" onValueChange={(value) => setData('section_id', value)} value={data.section_id}>
                         <SelectTrigger className={`w-[180px] ${errors.section_id ? 'border-red-400' : ''}`}>
                             <SelectValue placeholder="Section" />
                         </SelectTrigger>
                         <SelectContent>
                             {sections.map((sectionItem) => (
-                                <SelectItem key={sectionItem.id} value={sectionItem.name.toString()}>
+                                <SelectItem key={sectionItem.id} value={sectionItem.id.toString()}>
                                     {sectionItem.name} | {sectionItem.class_id}
                                 </SelectItem>
                             ))}
